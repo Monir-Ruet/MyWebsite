@@ -1,13 +1,19 @@
 
 <div class="container-fluid">
   <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-3">
         <!-- <p>Left</p> -->
       </div>
-      <div class="col-lg-7 p-5 pt-3">
-        <markdown katex [katexOptions]="options" lineNumbers [start]="1"  [data]="markdown"></markdown>
+      <div class="col-lg-6 p-5 pt-3">
+        <markdown katex [katexOptions]="options" lineNumbers [start]="1"  [data]="markdown" (ready)="onReady()"></markdown>
+        <div *ngIf="ShowCommentEditor">
+            <div>
+                <p>This textbox defaults to using <strong>Markdown</strong> to format your answer.</p><p>You can type <strong>!ref</strong> in this text area to quickly search our full set of tutorials, documentation &amp; marketplace offerings and insert the link!</p>
+            </div>
+            <div><a routerLink="/login" title="">Sign In or Sign Up to Comment</a></div>
+        </div>
       </div>
-      <div class="col-lg-3">
-      </div>
+      <div class="col-lg-3 right" [innerHTML]="tableOfContents"></div>
   </div>
 </div>
+

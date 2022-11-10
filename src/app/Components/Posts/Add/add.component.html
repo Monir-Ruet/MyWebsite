@@ -4,9 +4,11 @@
         <mat-label>Title</mat-label>
         <input matInput  placeholder="Enter a name..." formControlName="title" autocomplete="off" autofocus="on">
     </mat-form-field>
+    <!-- <textarea class="textarea p-2" [(ngModel)]="t" placeholder="Write markdown here..."  [ngModelOptions]="{standalone: true}"></textarea> -->
     <mat-form-field appearance="outline">
         <mat-label>Body</mat-label>
-        <input  matInput placeholder="Enter password..." formControlName="body" autocomplete="off">
+        <textarea matNativeControl formControlName="body"></textarea>
+        <!-- <input matInput placeholder="Enter password..." formControlName="body" autocomplete="off"> -->
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Author</mat-label>
@@ -16,5 +18,7 @@
         <mat-label>Tags</mat-label>
         <input  matInput placeholder="Enter password..." formControlName="tags" autocomplete="off">
     </mat-form-field>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
-</form> 
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Add Post</button>
+</form>
+<div>{{t}}
+</div>

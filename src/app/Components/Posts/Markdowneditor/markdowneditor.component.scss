@@ -12,7 +12,49 @@
   border-radius: 10px;
 }
 
-.textarea{
-  width: 100%;
-  height: calc(100vh - 250px);
+// Editform
+.editorform{
+  border: 1px solid blue;
+  border-radius: 10px;
+  min-height: 200px;
+  button{
+    padding: 10px;
+    background-color: white;
+    border: 0px;
+  }
+  button:hover{
+    color:blue
+  }
+  textarea:focus, input:focus{
+    outline: none;
+  }
+  textarea{
+    width: 100%;
+    border: 0px;
+    font-size: large;
+  }
+  hr{
+    color:black;
+    margin: 0px;
+  }
+  .grow-wrap {
+    display: grid;
+  }
+  .grow-wrap::after {
+    content: attr(data-replicated-value) " ";
+    white-space: pre-wrap;
+    visibility: hidden;
+  }
+  .grow-wrap > textarea {
+    resize: none;
+    overflow: hidden;
+  }
+  .grow-wrap > textarea,
+  .grow-wrap::after {
+    padding: 0.5rem;
+    margin-bottom: 10px;
+    grid-area: 1 / 1 / 2 / 2;
+  }
 }
+
+

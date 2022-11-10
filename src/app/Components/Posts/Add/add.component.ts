@@ -22,11 +22,12 @@ export class AddComponent implements OnInit ,OnDestroy{
   addSubscriber:any=null!;
 
   NewPostForm=new FormGroup({
-    title:new FormControl(),
-    body:new FormControl(),
-    author:new FormControl(),
-    tags:new FormControl()
+    title:new FormControl<string>(''),
+    body:new FormControl<string>(''),
+    author:new FormControl<string>(''),
+    tags:new FormControl<string>('')
   })
+  t:string=null!;
   onaddnew(){
     let obj=this.NewPostForm.value;
     let newObj={
@@ -39,5 +40,4 @@ export class AddComponent implements OnInit ,OnDestroy{
       console.log(data);
     })
   }
-  
 }
