@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,11 +9,19 @@ import { DashboardService } from './dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private Service:DashboardService) { }
+  constructor(private Service:DashboardService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params);
+      }
+    );
+    this.Service.getPostall().subscribe((data)=>{
+      console.log(data);
+    })
   }
-  bootstrapColors=["primary","secondary","success","danger","info","light","dark","warning"];
-  formField=["id","Name","Body","Author"];
-
+  refresh(): void {
+    window.location.reload();
+  }
 }

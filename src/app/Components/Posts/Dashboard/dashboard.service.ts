@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ import { Injectable } from '@angular/core';
 export class DashboardService {
 
   constructor(private ws:HttpClient) {}
-  getGithub(){
-    return this.ws.get('https://raw.githubusercontent.com/Monir-Ruet/HTTP-INJECTOR/main/C%2B%2B/settings.ini');
+  
+  getPostall(){
+    let page=1;
+    return this.ws.get(`${environment.apiUrl}/posts/find?page=${page}&sort=asc`);
   }
 }
