@@ -7,25 +7,19 @@ import { AddService } from './add.service';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit ,OnDestroy{
+export class AddComponent implements OnInit{
 
   constructor(private Service:AddService) { }
 
   ngOnInit(): void {
   }
-  ngOnDestroy(): void {
-    if(this.addSubscriber!=null)
-      this.addSubscriber.unsubscribe();
-  }
-
   //Variables
-  addSubscriber:any=null!;
 
   NewPostForm=new FormGroup({
-    title:new FormControl<string>(''),
-    body:new FormControl<string>(''),
-    author:new FormControl<string>(''),
-    tags:new FormControl<string>('')
+    title:new FormControl(''),
+    body:new FormControl(''),
+    author:new FormControl(''),
+    tags:new FormControl('')
   })
   t:string=null!;
   onaddnew(){
@@ -36,7 +30,7 @@ export class AddComponent implements OnInit ,OnDestroy{
       "author":obj.author,
       "tags":[obj.tags]
     }
-    this.addSubscriber=this.Service.addnewpost(newObj).subscribe((data)=>{
+    this.Service.addnewpost(newObj).subscribe((data)=>{
       console.log(data);
     })
   }

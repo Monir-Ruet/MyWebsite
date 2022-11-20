@@ -9,14 +9,14 @@ export class SignupService {
 
   constructor(private ws:HttpClient) { }
   signup(data:any){
-    return this.ws.post<SignupResponse>(`${environment.apiUrl}/signup`,data);
+    return this.ws.post<user>(`${environment.apiUrl}/signup`,data);
   }
 }
 
-interface SignupResponse{
-  fullname:string,
+export interface user{
+  fullname?:string,
   username:string,
   password:string,
-  email:string,
-  gender:string
+  email?:string,
+  gender?:string
 }

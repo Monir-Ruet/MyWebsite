@@ -6,15 +6,11 @@ import { SignupService } from './signup.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SingupComponent implements OnInit,OnDestroy {
+export class SingupComponent implements OnInit {
 
   constructor(private service:SignupService) { }
   SignupSubscriber:any=null!;
   ngOnInit(): void {
-  }
-  ngOnDestroy(): void {
-    if(this.SignupSubscriber!=null)
-      this.SignupSubscriber.unsubscribe();
   }
   NewUser=new FormGroup({
     fullname:new FormControl(''),
@@ -24,7 +20,6 @@ export class SingupComponent implements OnInit,OnDestroy {
     gender:new FormControl('')
   })
   onSignup(){
-    console.log(this.NewUser.value)
     this.SignupSubscriber=this.service.signup(this.NewUser.value).subscribe((data)=>{
       console.log(data);
     })

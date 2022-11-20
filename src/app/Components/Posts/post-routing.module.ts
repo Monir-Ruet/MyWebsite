@@ -6,10 +6,10 @@ import { DashboardComponent } from './Dashboard/dashboard.component';
 import { ViewComponent } from './View/view.component';
 
 const routes: Routes = [
-  { path: '' , component:DashboardComponent},
-  { path: 'view' , component:ViewComponent},
-  { path: 'add'  , component:AddComponent},
-  { path:'editor', component:MarkdowneditorComponent}
+  { path: ''      , component:DashboardComponent},
+  { path: 'view'  , component:ViewComponent},
+  { path: 'add'   , component:AddComponent},
+  { path: 'editor', component:MarkdowneditorComponent}
 ];
 
 @NgModule({

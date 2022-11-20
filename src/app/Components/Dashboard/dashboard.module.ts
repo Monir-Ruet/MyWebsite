@@ -6,11 +6,13 @@ import { LoginComponent } from './Login/login.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SingupComponent } from './Signup/signup.component';
+import { HomeComponent } from './Home/home.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SingupComponent
+    SingupComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

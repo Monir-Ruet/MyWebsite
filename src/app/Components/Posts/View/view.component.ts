@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewService } from './view.service';
 import { KatexOptions } from 'ngx-markdown';
 import { ViewEncapsulation } from '@angular/core'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view',
@@ -9,7 +10,7 @@ import { ViewEncapsulation } from '@angular/core'
   styleUrls: ['./view.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ViewComponent implements OnInit,OnDestroy {
+export class ViewComponent implements OnInit {
 
 
   body:string=null!;
@@ -17,20 +18,16 @@ export class ViewComponent implements OnInit,OnDestroy {
   author:string=null!;
   tags:string[]=null!;
   markdown:string='';
-  constructor(private ws:ViewService) { }
+  constructor(private ws:ViewService,private route: ActivatedRoute) { }
 
-  //Destroy everything
-  PostSubscriber:any;
   ngOnInit(): void {
-    this.PostSubscriber=this.ws.ViewPost('636c5ca38975a50aa52e3f58').subscribe(data=>{
+    const filter:string = this.route.snapshot.queryParamMap.get('id')!;
+    this.ws.ViewPost(filter).subscribe(data=>{
       this.title=data.title;
       this.markdown=data.body;
       this.author=data.author,
       this.tags=data.tags;
     })
-  }
-  ngOnDestroy(): void {
-    this.PostSubscriber.unsubscriber();
   }
   public options: KatexOptions = {
     displayMode: true,

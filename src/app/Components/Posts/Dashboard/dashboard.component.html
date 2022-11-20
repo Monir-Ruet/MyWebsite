@@ -1,1 +1,5 @@
-<a (click)="refresh()" routerLink="/d">HOME</a>
+<div class="container">
+    <div *ngFor="let post of PostContainer ;index as i">
+        <a routerLink="/posts/view" [queryParams]="{id: PostContainer[i]._id}">{{PostContainer[i].title}}</a>
+    </div>
+</div>

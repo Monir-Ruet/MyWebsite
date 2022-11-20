@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DashboardService } from './dashboard.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DashboardService, PostStore } from './dashboard.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,21 +7,17 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit{
 
   constructor(private Service:DashboardService,private route:ActivatedRoute) { }
 
+  ServiceSubscriber:any;
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params);
-      }
-    );
-    this.Service.getPostall().subscribe((data)=>{
-      console.log(data);
+    this.ServiceSubscriber=this.Service.getPostall().subscribe((data)=>{
+      this.PostContainer=data;
     })
   }
-  refresh(): void {
-    window.location.reload();
-  }
+  // All post
+  PostContainer:any;
+
 }

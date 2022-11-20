@@ -9,7 +9,7 @@ import { DashboardService } from '../dashboard.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit{
 
   constructor(private service:LoginService,private router:Router,private DashService:DashboardService) { }
 
@@ -23,21 +23,13 @@ export class LoginComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     // console.log(this.DashService.LoggedUser());
   }
-  ngOnDestroy(): void {
-    // if(this.loginSubscriber!=null)
-    //   this.loginSubscriber.unsubscribe();
-  }
   onLogin(){
-    this.loginSubscriber=this.service.Login(this.Credential.value).subscribe((data)=>{
+    this.loginSubscriber=this.service.Login(this.Credential.value).subscribe(data=>{
       if(data.status==200){
         console.log(data)
         localStorage.setItem('token',data.token);
         this.router.navigate(['/']);
       }
-      this.loginSubscriber.unsubscribe();
     })
-  }
-  isValidLogin(){
-
   }
 }
