@@ -13,9 +13,11 @@ export class AppInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let token=localStorage.getItem('token');
+    if(token==null) return next.handle(request);
     request= request.clone({
       setHeaders:{
-        Authorization:'Bearer '+localStorage.getItem('token')
+        Authorization:'Bearer '+token
       }
     })
     return next.handle(request)

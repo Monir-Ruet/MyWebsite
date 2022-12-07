@@ -1,5 +1,11 @@
 <div class="container">
-    <div *ngFor="let post of PostContainer ;index as i">
-        <a routerLink="/posts/view" [queryParams]="{id: PostContainer[i]._id}">{{PostContainer[i].title}}</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngFor="let post of PostContainer ;index as i">
+                <div class="post_container">
+                    <a class="anchorlink" routerLink="/posts/view" [queryParams]="{id: PostContainer[i]._id}">{{PostContainer[i].title}}</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { KatexOptions } from 'ngx-markdown';
 @Component({
   selector: 'app-markdowneditor',
   templateUrl: './markdowneditor.component.html',
-  styleUrls: ['./markdowneditor.component.scss']
+  styleUrls: ['./markdowneditor.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MarkdowneditorComponent implements OnInit {
 
@@ -11,7 +12,7 @@ export class MarkdowneditorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  markdown:string=null!;
+  markdown:string='# MONIR';
 
 
   public options: KatexOptions = {
@@ -33,7 +34,7 @@ export class MarkdowneditorComponent implements OnInit {
   }
 
   // Preview
-  showPreview:boolean=false;
+  showPreview:boolean=true;
   onPreview(){
     this.showPreview=!this.showPreview;
   }
@@ -49,7 +50,6 @@ export class MarkdowneditorComponent implements OnInit {
       textarea.selectionStart=pos1+shift;
       textarea.selectionEnd=pos1+shift;
     }
-    console.log(shift);
     textarea.focus();
   }
   onBold(){
@@ -89,11 +89,26 @@ export class MarkdowneditorComponent implements OnInit {
     this.addText(3,str);
   }
   onTable(){
-    let str='\n'+
-    '| Header 1 | Header 2 |\n'+
-    '|----------|----------|\n'+
-    '| Cell 1   | Cell 1   |\n'+
-    '| Cell 2   | Cell 2   |\n'
+    // let str='\n'+
+    // '| Header 1 | Header 2 |\n'+
+    // '|----------|----------|\n'+
+    // '| Cell 1   | Cell 1   |\n'+
+    // '| Cell 2   | Cell 2   |\n'
+    let str=`
+    <center>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"><span class="data #textarea"></span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky"><span class="data"></span></td>
+  </tr>
+</tbody>
+</table></center>`;
+    this.markdown=str;
     this.addText(3,str);
   }
   onQuote(){
@@ -109,4 +124,5 @@ export class MarkdowneditorComponent implements OnInit {
   onMath(){
     this.addText(2,'$$','$$');
   }
+
 }

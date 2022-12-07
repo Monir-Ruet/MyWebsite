@@ -53,7 +53,7 @@
           <hr>
           <div [ngClass]="{'grow-wrap':showPreview==false}">
             <textarea id="writer" *ngIf="!showPreview" [(ngModel)]="markdown" (keydown)="handleKeydown($event)" rows="6" name="text" id="text" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
-            <markdown *ngIf="showPreview" katex [katexOptions]="options" lineNumbers [start]="1" class="variable-binding" [data]="markdown"></markdown>
+            <markdown contenteditable="true" *ngIf="showPreview" katex [katexOptions]="options" lineNumbers [start]="1" class="variable-binding" [data]="markdown"></markdown>
           </div>
         </div>
       </form>
